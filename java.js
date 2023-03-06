@@ -12,15 +12,39 @@ function Book(title, author, pages, read) {
   addBookToLibrary(this.title, this.author, this.pages, this.read);
 }
 
-const theHobbit = new Book('the hobbit', 'JK Rowling', 253, false);
+const theHobbit = new Book('The hobbit', 'JK Rowling', 253, false);
 
-const kafkaOnTheShore = new Book('Kafka on the Shore', 'Haruki Murakami', 352, true);
-
-function separateBooks(array) {
-  const i = 0;
-  for (let i = 0; i < array.length; i + 4) {
-    console.log(`Book${i}: ${array.slice(0, 4)}`);
+function addBooksToWebPage(novelArray) {
+  const novelTitle = document.querySelector('.title');
+  const novelAuthor = document.querySelector('.author');
+  const novelPages = document.querySelector('.pages');
+  const novelRead = document.querySelector('.read');
+  novelTitle.innerHTML += `Title: ${novelArray[0]}`;
+  novelAuthor.innerHTML += `Author: ${novelArray[1]}`;
+  novelPages.innerHTML += `Pages: ${novelArray[2]}`;
+  if (novelArray[3] === 'true') {
+    novelRead.innerHTML += 'Read: Yes';
+  } else {
+    novelRead.innerHTML += 'Read: No';
   }
 }
 
-separateBooks(myLibrary);
+function newCard() {
+  const outerBox = document.querySelector('.container');
+  const box = document.createElement('div');
+  box.className = 'card-container';
+  outerBox.appendChild(box);
+}
+
+function separateBooks(array) {
+  let n = 0;
+  const booksArray = [];
+  let novelArray = [];
+  for (let i = 0; i < array.length; i += 4) {
+    booksArray[n] = array.slice(i, i + 4);
+    novelArray = booksArray[n];
+    console.log(novelArray[n]);
+    addBooksToWebPage(booksArray[n]);
+    n += 1;
+  }
+}
