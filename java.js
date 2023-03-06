@@ -12,8 +12,6 @@ function Book(title, author, pages, read) {
   addBookToLibrary(this.title, this.author, this.pages, this.read);
 }
 
-const theHobbit = new Book('The hobbit', 'JK Rowling', 253, false);
-
 function addBooksToWebPage(novelArray) {
   const novelTitle = document.querySelector('.title');
   const novelAuthor = document.querySelector('.author');
@@ -30,13 +28,30 @@ function addBooksToWebPage(novelArray) {
 }
 
 function newCard() {
+  const theHobbit = new Book('The Hobbit', 'JK Rowling', 253, false);
   const outerBox = document.querySelector('.container');
   const box = document.createElement('div');
   box.className = 'card-container';
   outerBox.appendChild(box);
+  const innerTitle = document.createElement('div');
+  const innerAuthor = document.createElement('div');
+  const innerPages = document.createElement('div');
+  const innerRead = document.createElement('div');
+  innerTitle.className = 'title';
+  innerAuthor.className = 'author';
+  innerPages.className = 'pages';
+  innerRead.className = 'read';
+  box.appendChild(innerTitle);
+  innerTitle.innerHTML = `Title: ${theHobbit.title}`;
+  box.appendChild(innerAuthor);
+  innerAuthor.innerHTML = `Author: ${theHobbit.author}`;
+  box.appendChild(innerPages);
+  innerPages.innerHTML = `Pages: ${theHobbit.pages}`;
+  box.appendChild(innerRead);
+  innerRead.innerHTML = `Read: ${theHobbit.read}`;
 }
 
-function separateBooks(array) {
+/* function separateBooks(array) {
   let n = 0;
   const booksArray = [];
   let novelArray = [];
@@ -47,4 +62,4 @@ function separateBooks(array) {
     addBooksToWebPage(booksArray[n]);
     n += 1;
   }
-}
+} */
